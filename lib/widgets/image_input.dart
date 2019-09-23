@@ -9,6 +9,11 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
 
 class ImageInput extends StatefulWidget {
+  // Comes from add_place_screen, passed in by ImageInput(). Used below in _takePicture()
+  final Function onSelectImage;
+
+  ImageInput(this.onSelectImage);
+
   _ImageInputState createState() => _ImageInputState();
 }
 
@@ -28,13 +33,19 @@ class _ImageInputState extends State<ImageInput> {
       // Allows the image preview below
       _storedImage = imageFile;
     });
-    // Write the image to local file system using above imported packages: path as path and path_provider as syspaths.
+    // PRevents error in canceling picture, breaking out since the imageFile would be null
+    if (imageFile == null) {
+      return;
+    }
+    // Begin - Write the image to local file system using above imported packages: path as path and path_provider as syspaths.
     final appDir = await syspaths
         .getApplicationDocumentsDirectory(); // Location for app data, gives a future
     final fileName = path.basename(imageFile
         .path); // basename is the name of the file name and ext and imageFile.path is the path to where the imageFile is temporarily stored
     final savedImage = await imageFile.copy(
-        '${appDir.path}/${fileName}'); // Returns a future and Copies the file into the path and keeps the file name. Writes the image to the path found by appDir above using getApplicationDocumentsDirectory()
+        '${appDir.path}/$fileName'); // Returns a future and Copies the file into the path and keeps the file name. Writes the image to the path found by appDir above using getApplicationDocumentsDirectory()
+    // End - Image Write
+    widget.onSelectImage(savedImage);
   }
 
   @override
