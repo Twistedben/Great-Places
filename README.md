@@ -6,6 +6,9 @@ A new Flutter project.
 
 Local storage usage for in-app photos using Paths and Path_Provider.
 Attached SQLite Database for iOS and Android compatibility for local device storage.
+Uses Native Camera feature to snap photos.
+Uses Google Maps for current location and latitude/longitude of where the picture was taken.
+Accesses GoogleMaps for interactive mapping.
 
 ### Description
 
