@@ -13,8 +13,8 @@ class DBHelper {
         onCreate: (db, version) {
       // Execute runs a sql query against DB, returns future to say it's done. Go here for sql commands: https://pub.dev/packages/sqflite#raw-sql-queries
       return db.execute(
-          // Creates the user_places table with a primary key ID and title and image fields.
-          'CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT)');
+          // Creates the user_places table with a primary key ID and title and image fields. REAL is a float/double
+          'CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT, loc_lat REAL, loc_lng REAL, address TEXT)');
     }, version: 1);
   }
 
