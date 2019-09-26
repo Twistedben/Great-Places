@@ -13,6 +13,11 @@ class GreatPlaces with ChangeNotifier {
     return [..._items];
   }
 
+  // Used in place_detail_screen to find a single id instance of a great place
+  Place findById(String id) {
+    return _items.firstWhere((place) => place.id == id);
+  }
+
   // Method for adding and storing a place from add_place_screen form
   Future<void> addPlace(String pickedTitle, File pickedImage,
       PlaceLocation pickedLocation) async {

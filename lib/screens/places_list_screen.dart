@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './add_place_screen.dart';
 import '../providers/great_places.dart';
+import '../screens/place_detail_screen.dart';
 
 class PlacesListScreen extends StatelessWidget {
   @override
@@ -46,7 +47,10 @@ class PlacesListScreen extends StatelessWidget {
                                 subtitle: Text(
                                     greatPlaces.items[index].location.address),
                                 onTap: () {
-                                  // Go to detail page..
+                                  // The arguments here is how we pass data to the detail screen and how we also fulfill the 'id' variable in place_detail_screen which takes from ModalRoute...settings.arguments
+                                  Navigator.of(context).pushNamed(
+                                      PlaceDetailScreen.routeName,
+                                      arguments: greatPlaces.items[index].id);
                                 },
                               ),
                             ),

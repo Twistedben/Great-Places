@@ -56,10 +56,18 @@ class _MapScreenState extends State<MapScreen> {
         // Allows ontap actions, calls above method to set LatLgn location
         onTap: widget.isSelecting ? _selectLocation : null,
         // If we have a picked location due to ontop, render a marker (this is a Set data type, which is like a list with only values {}, each value needs to be unique in a set) for it otherwise null/
-        markers: _pickedLocation == null
+        markers: (_pickedLocation == null && widget.isSelecting)
             ? null
             : {
-                Marker(markerId: MarkerId('m1'), position: _pickedLocation),
+                Marker(
+                  markerId: MarkerId('m1'),
+                  // If picked location is null, which it is when coming from place_detail_screen, then show initialLocation, otherwise show pickedLocation which is when we came from add_place_screen
+                  position: _pickedLocation ??
+                      LatLng(
+                        widget.initialLocation.latitude,
+                        widget.initialLocation.longitude,
+                      ),
+                ),
               },
       ),
     );
