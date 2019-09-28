@@ -35,6 +35,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.7.3" # Allows an icon to be used to represent the app
+
+  # Sets up flutter_launcher_icons package
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "dev_assets/places.png"
+  adaptive_icon_background: "#191919" #Rounded app icon used in newer android
+  adaptive_icon_foreground: "dev_assets/places-adaptive.png" #Rounded app icon used in newer android
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
